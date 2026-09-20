@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quiz Master - An interactive, modern general knowledge quiz web application built with HTML, CSS, and JavaScript.">
+  <title>Quiz Master - Test Your Knowledge</title>
+
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background decorative blur shapes -->
+  <div class="bg-shape shape-1" aria-hidden="true"></div>
+  <div class="bg-shape shape-2" aria-hidden="true"></div>
+
+  <!-- Main Application Container -->
+  <main class="quiz-container" id="quiz-container">
+
+    <!-- ==============================================
+         SCREEN 1: START / HOME SCREEN
+         ============================================== -->
+    <section class="card screen" id="start-screen" aria-label="Welcome screen">
+      <div class="brand-badge">
+        <span class="badge-icon">✨</span> General Knowledge Edition
+      </div>
+      
+      <h1 class="app-title">Quiz Master</h1>
+      <p class="app-subtitle">
+        Challenge yourself with 10 engaging questions covering Science, Technology, Geography, History, and Trivia!
+      </p>
+
+      <div class="quiz-highlights">
+        <div class="highlight-item">
+          <span class="highlight-icon">⏱️</span>
+          <div>
+            <strong>10 Questions</strong>
+            <span>One question at a time</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">🎯</span>
+          <div>
+            <strong>Instant Feedback</strong>
+            <span>Learn with every answer</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">🏆</span>
+          <div>
+            <strong>Score & Rank</strong>
+            <span>Track your final percentage</span>
+          </div>
+        </div>
+      </div>
+
+      <button id="start-btn" class="btn btn-primary btn-block">
+        <span>Start Quiz</span>
+        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </section>
+
+    <!-- ==============================================
+         SCREEN 2: ACTIVE QUIZ SCREEN
+         ============================================== -->
+    <section class="card screen hide" id="quiz-screen" aria-label="Quiz question screen">
+      <!-- Quiz Header: Category & Question Counter -->
+      <div class="quiz-header">
+        <span class="category-pill" id="question-category">General Knowledge</span>
+        <span class="counter-badge" id="question-counter">Question 1 of 10</span>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar-container" aria-label="Quiz progress">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-fill" style="width: 10%;"></div>
+        </div>
+      </div>
+
+      <!-- Question Text Box -->
+      <div class="question-container">
+        <h2 class="question-text" id="question-text">Question text will load here...</h2>
+      </div>
+
+      <!-- Answer Options (4 buttons) -->
+      <div class="options-grid" id="options-container">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+
+      <!-- Answer Feedback Message -->
+      <div class="feedback-banner hide" id="feedback-banner" role="status" aria-live="polite">
+        <span class="feedback-icon" id="feedback-icon">✓</span>
+        <span class="feedback-text" id="feedback-text">Correct answer!</span>
+      </div>
+
+      <!-- Navigation Footer -->
+      <div class="quiz-footer">
+        <div class="live-score">
+          Current Score: <span id="current-score-text">0</span>
+        </div>
+        <button id="next-btn" class="btn btn-primary" disabled>
+          <span>Next Question</span>
+          <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SCREEN 3: RESULTS SCREEN
+         ============================================== -->
+    <section class="card screen hide" id="result-screen" aria-label="Quiz results screen">
+      <div class="result-celebration">
+        <div class="result-badge-icon" id="result-emoji">🎉</div>
+      </div>
+
+      <h2 class="result-title" id="result-title">Quiz Completed!</h2>
+      <p class="result-subtitle" id="result-subtitle">Here is how you performed:</p>
+
+      <!-- Score Card -->
+      <div class="score-card">
+        <div class="score-circular-badge">
+          <span class="score-percentage" id="final-percentage">80%</span>
+          <span class="score-label">Accuracy</span>
+        </div>
+
+        <div class="score-stats-grid">
+          <div class="stat-box">
+            <span class="stat-value text-primary" id="final-score">8 / 10</span>
+            <span class="stat-label">Final Score</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-value text-success" id="stat-correct">8</span>
+            <span class="stat-label">Correct</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-value text-danger" id="stat-wrong">2</span>
+            <span class="stat-label">Incorrect</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="restart-btn" class="btn btn-primary btn-block">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+        </svg>
+        <span>Restart Quiz</span>
+      </button>
+    </section>
+
+  </main>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
